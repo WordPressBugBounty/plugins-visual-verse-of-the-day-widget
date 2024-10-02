@@ -1,0 +1,1 @@
+# plugins-visual-verse-of-the-day-widget
