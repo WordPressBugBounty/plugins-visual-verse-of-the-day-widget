@@ -2,7 +2,7 @@
 /**
 Plugin Name: Visual Bible Verse of the Day Widget
 Description: Plugin for adding a widget for the Visual Bible Verse of the Day from https://visualverse.thecreationspeaks.com/
-Version: 1.10
+Version: 1.11
 Author: Karl Kranich
 Author URI: http://karl.kranich.org/visual-verse-widget
 */
@@ -52,12 +52,16 @@ class vv_widget extends WP_Widget {
 				$i++;
 			}
 
+			$headers = [
+				"User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+			];
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
 			curl_setopt($ch, CURLOPT_HEADER, 0);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_URL, $vv_link);
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, FALSE);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 			$page_data = curl_exec($ch);
 			curl_close($ch);
 
